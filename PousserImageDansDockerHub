@@ -1,0 +1,34 @@
+pipeline{
+     agent any
+     environnement {
+            DOCKERHUB_CREDENTIALS=credentials('001')
+      }
+      stages {
+            stage('git clone') {
+                 steps {
+                      git 'https://github.com/cifre0/jenkins/'
+                    }
+                 }
+              stage('build') {
+                      steps {
+                         sh 'docker build -t  nginx:latest . '
+                    }
+                 }
+             stage('login') {
+                      steps {
+                         sh 'echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                    }
+                 }
+            stage('push') {
+                 steps {
+                      sh 'docker push nginx:latest'
+                    }
+                  }
+                }
+     
+            post {
+                always {
+                      sh 'docker logout'
+                   }
+                 }
+}
