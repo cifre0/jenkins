@@ -10,7 +10,8 @@ pipeline {
 
                 // Get some code from a GitHub repository
 
-                git url: 'https://github.com/cifre0/jenkins', branch: 'main'
+                // git url: 'https://github.com/cifre0/jenkins', branch: 'main'
+                checkout scm
 
             }
 
