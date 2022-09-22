@@ -1,17 +1,17 @@
 pipeline{
      agent any
-     environnement {
-            DOCKERHUB_CREDENTIALS=credentials('001')
+     environment {
+            DOCKERHUB_CREDENTIALS=credentials('ID') // ID Identifiants globaux créer dans Jenkins
       }
       stages {
             stage('git clone') {
                  steps {
-                      git 'https://github.com/cifre0/jenkins/'
+                      git branch: 'main', url: 'https://github.com/user/project/'
                     }
                  }
               stage('build') {
                       steps {
-                         sh 'docker build -t  nginx:latest . '
+                         sh 'docker build -t  usernamedockerhub/nomdeapp:tag . '
                     }
                  }
              stage('login') {
@@ -21,7 +21,7 @@ pipeline{
                  }
             stage('push') {
                  steps {
-                      sh 'docker push nginx:latest'
+                      sh 'docker push usernamedockerhub/nomdeapp:tag'
                     }
                   }
                 }
