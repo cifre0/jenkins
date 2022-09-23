@@ -17,7 +17,7 @@ pipeline{
                  }
             stage('pull') {
                  steps {
-                      sh 'docker pull ahmedchaib93/httpd:latest'
+                      sh 'docker pull ahmedchaib93/httpd:test'
                     }
                   }
                 }
