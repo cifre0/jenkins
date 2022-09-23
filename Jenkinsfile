@@ -15,11 +15,11 @@ pipeline{
                          sh 'echo $DOCKERHUB_CREDENTIALS_PSW  | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                     }
                  }
-            stage('pull') {
-                 steps {
-                      sh 'docker pull ahmedchaib93/httpd:latest'
-                    }
-                  }
+//             stage('pull') {
+//                  steps {
+//                       sh 'docker pull ahmedchaib93/httpd:latest'
+//                     }
+//                   }
                 }
      
             post {
